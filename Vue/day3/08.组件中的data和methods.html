@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <counter></counter>
+        <hr>
+        <counter></counter>
+        <hr>
+        <counter></counter>
+    </div>
+
+    <template id='tmpl'>
+        <div>
+            <input type="button" value="+1" @click='increment'>
+            <h3>{{count}}</h3>
+        </div>
+    </template>
+  
+    <script>
+
+        var dataObj = {count:0}
+
+        // 计数器组件，点击按钮，数值加一
+        Vue.component('counter', {
+            template : '#tmpl',
+            // 组件的data和实例的data不一样，实例中的data可以为一个对象但是组件中的data必须是一个方法，且方法内部必须返回一个对象
+            // 组件中的data使用方式和实例中的使用方式完全一样
+            data : function(){
+                //return dataObj
+                return {count : 0}
+            },
+            methods:{
+                increment(){
+                    this.count ++ 
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+
+            },
+            methods : {
+
+            }
+        })
+
+    </script>
+</body>
+</html>

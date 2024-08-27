@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <!-- 如果对象的属性里包含 - ， 则属性需要加上单引号 -->
+        <!-- <h1 :style="{color:'red', 'font-weight':200}">大吉大利，今晚吃鸡~</h1> -->
+        <!-- <h1 :style="styleObj1">大吉大利，今晚吃鸡~</h1> -->
+
+        <h1 :style="[styleObj1, styleObj2]">大吉大利，今晚吃鸡~</h1>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el : "#app",
+            data : {
+                styleObj1 : {color:'red', 'font-weight':200},
+                styleObj2 : {'font-style':'italic'}
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

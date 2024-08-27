@@ -1,0 +1,18 @@
+html, body{
+    margin: 0;
+    padding: 0;
+
+    li{
+        font-size: 12px;
+        line-height: 30px;
+    }
+
+    .box{
+        width: 220px;
+        height: 120px;
+
+        // 默认情况下 webpack 无法处理 url中的地址
+        background: url('../images/123.jpg');
+        background-size: cover;
+    }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 导入lib包 -->
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <!-- 2、创建一个要控制的区域 -->
+    <div id="app">
+        <input type="button" value="吃鸡" @click="chiji">
+        <input type="button" value="停止" @click="stop">
+        <h4>{{ msg }}</h4>
+    </div>
+
+    <script>
+        // 在vm实例中如果想要获取data上的数据，或者想要调用 methods 中的方法，必须通过 this.数据属性名 或 this.方法名来进行访问
+        // 这里的this 就表示我们 new 出来的 vm 实例对象
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                msg:"大吉大利，今晚吃鸡~~",
+                intervalId : null // 在 data 上定义定时器id
+
+            },
+            methods:{
+                chiji(){
+                    // 如果定时器已开启，则直接返回
+                    if(this.intervalId != null){
+                        return
+                    }
+                    this.intervalId = setInterval(() => {   // => 箭头函数，保证函数内部 this 和函数外部 this 一致
+                        var start = this.msg.substring(0,1)
+                        // 获取到后面的所有字符
+                        var end = this.msg.substring(1)
+                        // 重新拼接得到新的字符串，并赋值给 msg
+                        this.msg = end + start
+                    }, 400)
+                    // vm 实例会监听自己身上data中的所有数据的改变，只要数据一发生变化就会把最新的数据从data上同步到页面中去
+                },
+                stop(){ // 停止定时器
+                    clearInterval(this.intervalId)
+                    // 每当清除了定时器之后，需要把 intervalId 重置为null
+                    this.intervalId = null
+                }
+            }
+        })
+
+    // 跑马等效果的实现思路
+    // 用substring 来进行字符串的截取，把第一个字符截取出来放到最后一个位置。再加一个定时器，实现自动截取的功能
+    </script>
+</body>
+</html>

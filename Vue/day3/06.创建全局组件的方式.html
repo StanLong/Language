@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <!-- 把组件的名称以html标签的形式引入到页面中 -->
+        <!-- 如果组件名称使用驼峰命名法，则引用是驼峰要改成小写，两个单词之间要以 '-' 隔开 -->
+        <!-- 如果不使用驼峰命名，则直接引用即可 -->
+        <!-- <my-com1></my-com1>  -->
+        <!-- <mycom3></mycom3> -->
+        <!-- <mycom4></mycom4> -->
+        <mycom5></mycom5>
+    </div>
+
+    <div id="app2">
+        <!-- <mycom4></mycom4> -->
+    </div>
+    
+    <!-- 在被控制的 #app 外面，使用 template 元素，定义组件的html模板结构 -->
+    <template id="tmpl">
+        <div>
+            <h1>这是通过 template 元素在外部定义的组件结构，这种方式有代码提示和组件高亮</h1>
+        </div>
+    </template>
+
+    <script>
+        // 方式一
+        // // 1.1 使用 Vue.extend 来创建全局的Vue组件
+        // var com1 = Vue.extend({
+        //     template :'<h3>这是通过Vue.extend创建的组件</h3>' // 通过template属性，指定组件要展示的html结构
+        // })
+
+        // // 1.2 使用 Vue.component('组件的名称'，创建从出来的组件模板对象)
+        // Vue.component('myCom1', com1)
+
+        // 方式二 Vue.component 第一个参数是组件的名称，第二个参数 Vue.extend 创建的组件，其中 template 就是组件将来要展示的html内容
+        // Vue.component('mycom2', Vue.extend({
+        //     template :'<h3>这是通过Vue.extend创建的组件</h3>'
+        // }))
+
+        // 方式三
+        // Vue.component('mycom3', {
+        //     // 组件的 template 有且只有唯一的根元素
+        //     template :'<div><h3>这是直接通过 Vue.component 创建的组件</h3><span>123</span></div>'
+        // })
+
+
+
+        // 方式四
+        // Vue.component('mycom4', {
+        //     template : '#tmpl'
+        // })
+
+        // 方式五
+        // 通过对象字面量的形式定义了一个组件模板
+        var login = {
+            template:'<h1>mycom5</h1>'
+        }
+        Vue.component('mycom5', login)
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+            },
+            methods:{
+
+            }
+        })
+
+        var vm2 = new Vue({
+            el : '#app2',
+            data : {
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

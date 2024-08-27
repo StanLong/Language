@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+    <link rel="stylesheet" href="./lib/animate.css">
+    <style>
+        .ball{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <input type="button" value="加入购物车" @click="flag=!flag">
+        <transition 
+            @before-enter='beforeEnter'
+            @enter='enter'
+            @after-enter='afterEnter'>
+            <div class="ball" v-show='flag'></div>
+        </transition>
+    </div>
+    
+    <!-- 使用钩子函数模拟小球半场动画 -->
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                flag : false
+            },
+            methods:{
+                // 动画钩子的第一个参数el 表示要执行动画的那个dom元素，是个原生的JS DOM 对象
+                // 可以认为 el 是通过 document.getElementById('') 方式获取到的原生JS DOM 对象
+                beforeEnter(el){ // beforeEnter 表示动画入场之前，此时动画尚未开始，可以设置元素开始之前的动画样式
+                    el.style.transform = 'translate(0,0)' // 设置小球开始动画之前的起始位置
+
+                },
+                enter(el, done){ // 表示动画开始之后的样式，可以设置小球完成动画之后的结束状态
+                    el.offsetWidth // 这句话没有实际作用，但是如果不写，出不来动画效果， 可以认为 el.offsetWidth 会强制动画刷新
+                    el.style.transform = 'translate(150px, 450px)'
+                    el.style.transition = 'all 1s ease'
+                    done() // done 其实就是 afterEnter 函数的引用
+                },
+                afterEnter(el){ // 动画完成之后
+                    this.flag = !this.flag
+                }
+            }
+        })
+    </script>
+</body>
+</html>

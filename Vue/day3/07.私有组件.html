@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <login></login>
+        <!-- <mycom5></mycom5> -->
+        <login2></login2>
+    </div>
+
+    <div id='app2'>
+        <!-- <login></login> -->
+    </div>
+
+    <template id='tmpl'>
+        <h1>这是私有的login组件</h1>
+    </template>
+
+    <script>
+
+        var login2 = {
+            template:'<h1>mycom5</h1>'
+        }
+        Vue.component('mycom5', login2)
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+
+            },
+            methods : {
+
+            },
+            components :{ //定义内部实例私有组件
+                login : {
+                    template : '#tmpl'
+                },
+                // 'mycom5':login 可简写为
+                login2
+            }
+        })
+
+        var vm2 = new Vue({ // 在 #app2 里引用#app里的私有组件会报错 <login> - did you register the component correctly?
+            el : '#app2'
+        })
+    </script>
+</body>
+</html>
