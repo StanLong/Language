@@ -24,12 +24,12 @@ object HelloScala{
 
 
 ```
-1. object 表示一个伴生对象，可以简单的理解为一个对象
+1. object 表示一个伴生对象，可以简单的理解为一个对象，反编译后会看到这是一个单例对象。
 2. HelloScala 就是对象的名字，底层真正对应的类名是 HelloScala$
 3. 编译后生成了两个文件 HelloScala$.class， HelloScala.class。 
-scala 现从 HelloScala的main开始执行， 然后调用 HelloScala$ 的方法， 即执行了这段代码 Predef..MODULE$.println("HelloScala");
+scala 先从 HelloScala的main开始执行， 然后调用 HelloScala$ 的方法， 即执行了这段代码 Predef..MODULE$.println("HelloScala");
 4. def 表示是一个方法，是一个关键字
-5. main表示方法名，程序执行的入口
+5. main 表示方法名，程序执行的入口
 6. args 表示形参，scala的特点是将参数写在前面，类型写在后面
 7. Array[String] 表示参数类型是个数组
 8. :Unit= 表示该函数的返回值为空，类似于Java中的void
