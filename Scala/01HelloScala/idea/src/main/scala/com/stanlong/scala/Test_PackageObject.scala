@@ -1,23 +1,21 @@
 package com.stanlong.scala
 
-import scala.beans.BeanProperty
+import scala.collection.mutable.ArrayBuffer
 
 /**
- * 类和对象
+ * 嵌套类-》类型投影
+ * 类型投影主要用在有外部类和内部类，并且外部类有方法是需要传入内部类作参数的时候用的
+ * 而这个传入的参数要求除了可以是自己这个对象的内部类，也可以是其他实例对象的内部类，只要都是实例化这个类就行了。
+ * 格式是 Outter#Inner
  */
 object Exercise01 {
     def main(args: Array[String]): Unit = {
-        val cat = new Cat() // 括号可以省略
-        // cat.name = "小白猫" // error 私有属性不能直接访问
-        cat.age = 10
-        cat.color = "白色"
-        printf("小猫的信息如下: %d %s", cat.age, cat.color)
-    }
-}
-class Cat{
-    private var name:String="" // 默认 public 修饰符，可自定义 private
+        val arr01 = ArrayBuffer[Int](3)
 
-    @BeanProperty // 相当于创建出符合 JavaBean 规范的getter / setter 方法
-    var age:Int= 0
-    var color :String = _ // _ 表示默认值
+        arr01.insert(1,2,3,4,5)
+
+        for (i <- arr01){
+            println(i)
+        }
+    }
 }

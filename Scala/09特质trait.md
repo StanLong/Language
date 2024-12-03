@@ -38,11 +38,11 @@ trait Young{
     val name:String="young"
 
     // 声明抽象和非抽象方法
+    def dating():Unit
+    
     def play(): Unit ={
         println("young people is playing")
     }
-
-    def dating():Unit
 }
 
 class Student extends Person with Young{
