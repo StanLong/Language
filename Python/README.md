@@ -32,7 +32,7 @@ ln -s /usr/local/python3.9/bin/python3.9 /usr/bin/python3.9
 ln -s /usr/local/python3.9/bin/pip3 /usr/bin/pip
 
 # 配置pip下载源
-touch ~/.pip/pip.conf
+mkdir -p ~/.pip && touch ~/.pip/pip.conf
 cat > ~/.pip/pip.conf << EOF
 [global]
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
