@@ -19,7 +19,7 @@ Python从入门到放弃
 
 ```shell
 # 安装python前需要先补包
-yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel
+yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make gdbm-devel xz-devel libffi-devel
 # 解压安装
 tar -zxf Python-3.9.11.tgz
 cd Python-3.9.11
